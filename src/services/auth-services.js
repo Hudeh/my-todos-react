@@ -14,7 +14,7 @@ authServices.signIn = async (loginCreds) => {
     Toastify({
       text: data?.message,
       style: {
-        background: '#7352C7',
+        background: '#19C37D',
       },
     }).showToast();
     return data;
@@ -36,7 +36,7 @@ authServices.signUp = async (signupCreds) => {
     Toastify({
       text: data?.message,
       style: {
-        background: '#7352C7',
+        background: '#19C37D',
       },
     }).showToast();
     return data;

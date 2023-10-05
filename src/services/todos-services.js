@@ -12,7 +12,7 @@ taskServices.create_task = async (taskData) => {
     Toastify({
       text: data?.message,
       style: {
-        background: '#7352C7',
+        background: '#19C37D',
       },
     }).showToast();
     return data;
@@ -33,7 +33,7 @@ taskServices.edit_task = async (taskData) => {
     Toastify({
       text: data?.message,
       style: {
-        background: '#7352C7',
+        background: '#19C37D',
       },
     }).showToast();
     return data;
@@ -53,7 +53,7 @@ taskServices.delete_task = async (taskID) => {
     Toastify({
       text: data?.message,
       style: {
-        background: '#7352C7',
+        background: '#19C37D',
       },
     }).showToast();
     return data;
