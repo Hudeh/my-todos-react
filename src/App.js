@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import PrivateRoute from './components/PrivateRoute';
+import ErrorPage from './components/ErrorPage';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import 'toastify-js/src/toastify.css';
+import { getAuthToken } from './services/config';
 
-function App() {
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+const App = () => {
+  const token = getAuthToken();
+  const [isAuthenticatd, setIsAuthenticatd] = React.useState(null);
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Login setIsAuthenticatd={setIsAuthenticatd} />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/signup',
+      element: <Signup />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: '/home',
+      element: (
+        <PrivateRoute token={token} isAuthenticatd={isAuthenticatd}>
+          <Home setIsAuthenticatd={setIsAuthenticatd} />
+        </PrivateRoute>
+      ),
+    },
+  ]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
-}
+};
 
 export default App;

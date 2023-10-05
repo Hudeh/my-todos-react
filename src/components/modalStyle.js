@@ -1,0 +1,15 @@
+export const modelStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  display: 'flex',
+  justifyContent: 'center',
+  boarder: '2px solid red',
+  pt: 1,
+  px: 4,
+  pb: 3,
+  borderRadius: 5,
+};
